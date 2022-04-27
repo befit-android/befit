@@ -1,0 +1,27 @@
+<resources>
+    // common
+    <string name="app_name">befit</string>
+    <string name="logout">Выход</string>
+
+    // welcome
+    <string name="registration">Регистрация</string>
+    <string name="login">Вход</string>
+
+    // registration
+    <string name="name">Имя</string>
+    <string name="email">Email</string>
+    <string name="password">Пароль</string>
+    <string name="gender">Пол</string>
+    <string name="dateOfBirth">Дата рождения</string>
+    <string name="have_account">Уже есть аккаунт?</string>
+    <string name="to_login">Войдите</string>
+
+    // login
+    <string name="havent_account">Нет аккаунта?</string>
+    <string name="to_registration">Зарегистрируйтесь</string>
+
+    <string-array name="gender">
+        <item>Мужской</item>
+        <item>Женский</item>
+    </string-array>
+</resources>
