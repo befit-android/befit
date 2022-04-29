@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.befit.R
@@ -18,6 +19,7 @@ import com.example.befit.ui.activity.MainActivity
 import com.example.befit.viewmodel.auth.AuthViewModel
 import com.example.befit.viewmodel.auth.AuthViewModelFactory
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.coroutines.delay
 import java.time.LocalDate
 import java.time.Period
 import kotlin.random.Random
@@ -44,8 +46,9 @@ class HomeFragment : Fragment() {
             PreferenceManager.getDefaultSharedPreferences(requireActivity()),
             repository
         )
-        viewModel = ViewModelProvider(requireActivity(), viewModelFactory)[AuthViewModel::class.java]
-        checkAuthorizationUser()
+        viewModel =
+            ViewModelProvider(requireActivity(), viewModelFactory)[AuthViewModel::class.java]
+
 
         binding.logoutBtn.setOnClickListener {
             logout()
@@ -54,30 +57,34 @@ class HomeFragment : Fragment() {
         return binding.root
     }
 
+    override fun onResume() {
+        super.onResume()
+        checkAuthorizationUser()
+    }
+
     private fun checkAuthorizationUser() {
-        if (viewModel.getUser()) {
-            viewModel.myResponse.observe(viewLifecycleOwner, Observer { response ->
-                if (response.isSuccessful) {
-                    binding.homeTv.text = response.body()?.first_name
-                } else {
-                    val errorText =
-                        response.errorBody()?.string()?.substringAfter(":\"")?.dropLast(3)
-                    Log.e("Error Response", errorText.toString())
+        viewModel.getUser(requireContext())
+        viewModel.getResponseUser().observe(viewLifecycleOwner, Observer { response ->
+            binding.homeTv.text = response.first_name
+        })
+        viewModel.getErrorUser().observe(viewLifecycleOwner) {
+            if (it != "") {
+                if (it == "Unauthorized")
                     findNavController().navigate(R.id.action_homeFragment_to_welcomeFragment)
-                }
-            })
-        } else findNavController().navigate(R.id.action_homeFragment_to_welcomeFragment)
+                else
+                    Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 
     private fun logout() {
-        viewModel.logout()
-        viewModel.myResponseString.observe(viewLifecycleOwner, Observer { response ->
-            if (response.isSuccessful) {
-                findNavController().navigate(R.id.action_homeFragment_to_welcomeFragment)
-            } else {
-                val errorText = response.errorBody()?.string()?.substringAfter(":\"")?.dropLast(3)
-                Toast.makeText(requireContext(), errorText, Toast.LENGTH_LONG).show()
-            }
+        viewModel.logout(requireContext())
+        viewModel.getResponseLogout().observe(viewLifecycleOwner, Observer {
+            findNavController().navigate(R.id.action_homeFragment_to_welcomeFragment)
+            binding.homeTv.text = ""
+        })
+        viewModel.getErrorLogout().observe(viewLifecycleOwner, Observer {
+            if (it != "") Toast.makeText(requireContext(), it, Toast.LENGTH_LONG).show()
         })
     }
 

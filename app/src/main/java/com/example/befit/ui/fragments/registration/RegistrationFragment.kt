@@ -13,12 +13,14 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.example.befit.R
 import com.example.befit.databinding.FragmentRegistrationBinding
 import com.example.befit.repository.ApiRepository
 import com.example.befit.viewmodel.auth.AuthViewModel
 import com.example.befit.viewmodel.auth.AuthViewModelFactory
+import kotlinx.coroutines.delay
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import java.util.*
@@ -46,7 +48,8 @@ class RegistrationFragment : Fragment() {
             PreferenceManager.getDefaultSharedPreferences(requireActivity()),
             repository
         )
-        viewModel = ViewModelProvider(requireActivity(), viewModelFactory)[AuthViewModel::class.java]
+        viewModel =
+            ViewModelProvider(requireActivity(), viewModelFactory)[AuthViewModel::class.java]
 
         val gender = resources.getStringArray(R.array.gender)
         val arrayAdapter = ArrayAdapter(requireContext(), R.layout.dropdown_item, gender)
@@ -111,23 +114,18 @@ class RegistrationFragment : Fragment() {
         val date = dateToServer
 
         if (inputCheck(name, email, password, date)) {
-            viewModel.register(email, name, gender, date, password)
-            viewModel.myResponseUserInfo.observe(requireActivity()) { response ->
-                if (response.isSuccessful) {
-                    Toast.makeText(
-                        requireContext(), "Регистрация прошла успешно",
-                        Toast.LENGTH_LONG
-                    ).show()
-                    lifecycleScope.launchWhenResumed {
+            viewModel.register(requireContext(), email, name, gender, date, password)
+            viewModel.getResponseUserInfo().observe(viewLifecycleOwner, Observer {
+                lifecycleScope.launchWhenResumed {
+                    if (it == "OK") {
+                        delay(100)
                         findNavController().navigate(R.id.action_registrationFragment_to_homeFragment)
                     }
-                } else {
-                    val errorText =
-                        response.errorBody()!!.string().substringAfter("[\"").dropLast(3)
-                    if (errorText != "")
-                        Toast.makeText(requireContext(), errorText, Toast.LENGTH_LONG).show()
                 }
-            }
+            })
+            viewModel.getErrorUserInfo().observe(viewLifecycleOwner, Observer {
+                if (it != "") Toast.makeText(requireContext(), it, Toast.LENGTH_LONG).show()
+            })
         } else {
             Toast.makeText(requireContext(), "Заполните все поля", Toast.LENGTH_LONG).show()
         }

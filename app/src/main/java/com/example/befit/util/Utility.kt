@@ -4,14 +4,12 @@ import android.R
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
-import android.graphics.Color
 import android.net.ConnectivityManager
 import android.view.Gravity
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ProgressBar
 import android.widget.RelativeLayout
-import android.widget.TextView
 import android.widget.Toast
 
 @SuppressLint("StaticFieldLeak")
@@ -24,29 +22,13 @@ object Utility {
             return if (netInfo != null && netInfo.isConnected) {
                 true
             } else {
-                showErrorToast("Интернет недоступен. Попробуйте еще раз")
+                Toast.makeText(this, "Интернет недоступен. Попробуйте еще раз", Toast.LENGTH_LONG).show()
                 false
             }
         } catch (e: Exception) {
             e.printStackTrace()
         }
         return false
-    }
-
-    private fun Context.showErrorToast(message: String?) {
-
-        try {
-            val toast = Toast.makeText(this, message, Toast.LENGTH_LONG)
-            val textView = toast.view?.findViewById(R.id.message) as? TextView
-
-            textView?.setTextColor(Color.WHITE)
-            textView?.gravity = Gravity.CENTER
-            toast.view?.setBackgroundColor(Color.RED)
-            toast.setGravity(Gravity.TOP or Gravity.FILL_HORIZONTAL, 0, 0)
-            toast.show()
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
     }
 
     private var progressBar: ProgressBar? = null

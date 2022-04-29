@@ -14,7 +14,7 @@
         android:usesCleartextTraffic="true"
         android:theme="@style/Theme.Befit">
         <activity
-            android:screenOrientation="fullSensor"
+            android:screenOrientation="portrait"
             android:name=".ui.activity.MainActivity"
             android:exported="true">
             <intent-filter>
