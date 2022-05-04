@@ -3,7 +3,6 @@ package com.example.befit.ui.fragments.login
 import android.os.Bundle
 import android.preference.PreferenceManager
 import android.text.TextUtils
-import android.util.Log
 import android.view.*
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -61,7 +60,7 @@ class LoginFragment : Fragment() {
                 lifecycleScope.launchWhenResumed {
                     if (it == "OK") {
                         delay(100)
-                        findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
+                        findNavController().navigate(R.id.action_loginFragment_to_diaryFragment)
                     }
                 }
             })

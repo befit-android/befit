@@ -2,20 +2,16 @@ package com.example.befit.viewmodel.auth
 
 import android.content.Context
 import android.content.SharedPreferences
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.befit.model.User
-import com.example.befit.model.UserInfo
 import com.example.befit.repository.ApiRepository
 import com.example.befit.util.Utility.hideProgressBar
 import com.example.befit.util.Utility.isInternetAvailable
 import com.example.befit.util.Utility.showProgressBar
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import retrofit2.Response
 
 class AuthViewModel(
     private val sharedPreferences: SharedPreferences,
@@ -91,7 +87,8 @@ class AuthViewModel(
                     sharedPreferences.edit().putString("token", null).apply()
                     responseLogout.value = response.message()
                 } else
-                    errorLogout.value = response.errorBody()?.string()?.substringAfter(":\"")?.dropLast(3)
+                    errorLogout.value =
+                        response.errorBody()?.string()?.substringAfter(":\"")?.dropLast(3)
             }
         }
     }
