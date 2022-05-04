@@ -1,6 +1,7 @@
 package com.example.befit.util
 
 import android.R
+import android.animation.ValueAnimator
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.DatePickerDialog
@@ -13,10 +14,17 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.ProgressBar
 import android.widget.RelativeLayout
 import android.widget.Toast
+import androidx.core.animation.doOnEnd
+import androidx.core.animation.doOnStart
 import androidx.core.content.ContextCompat
+import androidx.core.view.updateLayoutParams
 import androidx.lifecycle.MutableLiveData
 import com.example.befit.databinding.FragmentRegistrationBinding
+import com.kizitonwose.calendarview.CalendarView
+import com.kizitonwose.calendarview.model.InDateStyle
+import com.kizitonwose.calendarview.utils.yearMonth
 import java.time.LocalDate
+import java.time.YearMonth
 import java.time.format.DateTimeFormatter
 import java.util.*
 
@@ -117,5 +125,60 @@ object Utility {
             .setTextColor(resources.getColor(com.example.befit.R.color.purple_700))
         datePickerDialog.getButton(DatePickerDialog.BUTTON_POSITIVE)
             .setTextColor(resources.getColor(com.example.befit.R.color.teal_700))
+    }
+
+    // change calendar mode by swipe
+    @JvmStatic
+    fun swipeToWeekMode(calendarView: CalendarView, monthToWeek: Boolean, selectedDate: LocalDate) {
+        val firstDate = calendarView.findFirstVisibleDay()?.date
+        val lastDate = calendarView.findLastVisibleDay()?.date
+
+        val oneWeekHeight = calendarView.daySize.height
+        val oneMonthHeight = oneWeekHeight * 6
+
+        val oldHeight = if (monthToWeek) oneMonthHeight else oneWeekHeight
+        val newHeight = if (monthToWeek) oneWeekHeight else oneMonthHeight
+
+        val animator = ValueAnimator.ofInt(oldHeight, newHeight)
+        animator.addUpdateListener { animator ->
+            calendarView.updateLayoutParams {
+                height = animator.animatedValue as Int
+            }
+        }
+
+        animator.doOnStart {
+            if (!monthToWeek) {
+                calendarView.updateMonthConfiguration(
+                    inDateStyle = InDateStyle.ALL_MONTHS,
+                    maxRowCount = 6,
+                    hasBoundaries = true
+                )
+            }
+        }
+        animator.doOnEnd {
+            if (monthToWeek) {
+                calendarView.updateMonthConfiguration(
+                    inDateStyle = InDateStyle.FIRST_MONTH,
+                    maxRowCount = 1,
+                    hasBoundaries = false
+                )
+            }
+            if (monthToWeek) {
+                calendarView.scrollToDate(selectedDate)
+            } else {
+                if (firstDate!!.yearMonth == lastDate!!.yearMonth) {
+                    calendarView.scrollToMonth(firstDate.yearMonth)
+                } else {
+                    calendarView.scrollToMonth(
+                        minOf(
+                            selectedDate.yearMonth,
+                            YearMonth.now().plusMonths(10)
+                        )
+                    )
+                }
+            }
+        }
+        animator.duration = 250
+        animator.start()
     }
 }

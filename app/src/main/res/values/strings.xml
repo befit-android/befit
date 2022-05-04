@@ -24,6 +24,66 @@
         <item>Мужской</item>
         <item>Женский</item>
     </string-array>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string-array name="month">
+        <item>Январь</item>
+        <item>Февраль</item>
+        <item>Март</item>
+        <item>Апрель</item>
+        <item>Май</item>
+        <item>Июнь</item>
+        <item>Июль</item>
+        <item>Август</item>
+        <item>Сентябрь</item>
+        <item>Октябрь</item>
+        <item>Ноябрь</item>
+        <item>Декабрь</item>
+    </string-array>
+
+    <string-array name="dayOfWeek">
+        <item>Понедельник</item>
+        <item>Вторник</item>
+        <item>Среда</item>
+        <item>Четверг</item>
+        <item>Пятница</item>
+        <item>Суббота</item>
+        <item>Воскресенье</item>
+    </string-array>
+
+    <string-array name="reminders">
+        <item>Старайтесь больше двигаться</item>
+        <item>Старайтесь соблюдать режим сна</item>
+        <item>Медитация и йога — лучшие способы расслабиться</item>
+        <item>Придерживайтесь сбалансированного питания</item>
+        <item>Составляйте меню на неделю</item>
+        <item>Прием пищи: клетчатка, сложные углеводы и белок</item>
+        <item>Наладьте режим питания и жизни</item>
+        <item>Регулярно проветривайте помещение</item>
+        <item>Не игнорируйте свой дискомфорт</item>
+        <item>Не заедайте стресс</item>
+        <item>Пейте больше воды</item>
+        <item>Делайте правильные перекусы</item>
+        <item>Не подавляйте свои эмоции</item>
+        <item>Старайтесь сократить употребление кофе</item>
+        <item>Сведите к минимуму потребление сахара</item>
+        <item>Сократите употребление рафинированных углеводов</item>
+        <item>Не переедайте</item>
+        <item>Соблюдайте баланс энергии</item>
+        <item>Включите овощи в каждый прием пищи</item>
+        <item>Включайте белок в каждый прием пищи</item>
+        <item>Пробуйте новое</item>
+        <item>Составляйте сбалансированный рацион</item>
+        <item>Окружите себя людьми со здоровыми привычками</item>
+        <item>Отложите телефон во время еды</item>
+        <item>Постепенно вводите полезные привычки</item>
+        <item>Ешьте только то, что нравится</item>
+        <item>Ешьте из любимой посуды</item>
+        <item>Наладьте режим сна</item>
+        <item>Употребляйте жирную рыбу</item>
+        <item>Наполните тарелку «радугой» вкуса и цвета</item>
+        <item>Пейте воду перед едой</item>
+        <item>Питайтесь по индивидуальному КБЖУ</item>
+        <item>Сильнее обработка, меньше питательных веществ</item>
+    </string-array>
+
 </resources>
