@@ -1,6 +1,12 @@
 <resources>
     // common
     <string name="app_name">befit</string>
+    <string name="diary">Дневник</string>
+    <string name="diet">Рационы</string>
+    <string name="chat">Чат</string>
+    <string name="recipe">Рецепты</string>
+    <string name="profile">Профиль</string>
+
     <string name="logout">Выход</string>
 
     // welcome
@@ -100,5 +106,7 @@
         <item>Питайтесь по индивидуальному КБЖУ</item>
         <item>Сильнее обработка, меньше питательных веществ</item>
     </string-array>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

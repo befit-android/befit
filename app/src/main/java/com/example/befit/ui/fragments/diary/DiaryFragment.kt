@@ -1,7 +1,6 @@
 package com.example.befit.ui.fragments.diary
 
 import android.annotation.SuppressLint
-import android.graphics.Typeface
 import android.os.Bundle
 import android.preference.PreferenceManager
 import android.view.*
@@ -16,19 +15,23 @@ import com.example.befit.R
 import com.example.befit.databinding.CalendarDayLayoutBinding
 import com.example.befit.databinding.FragmentDiaryBinding
 import com.example.befit.repository.ApiRepository
+import com.example.befit.ui.activity.MainActivity
 import com.example.befit.util.Utility.swipeToWeekMode
 import com.example.befit.viewmodel.auth.AuthViewModel
 import com.example.befit.viewmodel.auth.AuthViewModelFactory
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.kizitonwose.calendarview.model.CalendarDay
 import com.kizitonwose.calendarview.model.DayOwner
 import com.kizitonwose.calendarview.model.InDateStyle
 import com.kizitonwose.calendarview.ui.DayBinder
 import com.kizitonwose.calendarview.ui.ViewContainer
 import com.kizitonwose.calendarview.utils.yearMonth
+import kotlinx.android.synthetic.main.activity_main.*
 import java.time.DayOfWeek
 import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.YearMonth
+
 
 class DiaryFragment : Fragment() {
 
@@ -43,7 +46,7 @@ class DiaryFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-//        (activity as MainActivity).btm_nav.visibility = View.VISIBLE
+        (activity as MainActivity).btm_nav.visibility = View.VISIBLE
         (activity as AppCompatActivity).supportActionBar?.hide()
         setHasOptionsMenu(true)
         _binding = FragmentDiaryBinding.inflate(inflater, container, false)
@@ -58,10 +61,6 @@ class DiaryFragment : Fragment() {
 
         createCalendar()
         setProgressBar()
-
-        binding.logoutBtn.setOnClickListener {
-            logout()
-        }
 
         return binding.root
     }
@@ -109,16 +108,6 @@ class DiaryFragment : Fragment() {
                     Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
             }
         }
-    }
-
-    private fun logout() {
-        viewModel.logout(requireContext())
-        viewModel.getResponseLogout().observe(viewLifecycleOwner, Observer {
-            findNavController().navigate(R.id.action_diaryFragment_to_welcomeFragment)
-        })
-        viewModel.getErrorLogout().observe(viewLifecycleOwner, Observer {
-            if (it != "") Toast.makeText(requireContext(), it, Toast.LENGTH_LONG).show()
-        })
     }
 
     @SuppressLint("ClickableViewAccessibility")

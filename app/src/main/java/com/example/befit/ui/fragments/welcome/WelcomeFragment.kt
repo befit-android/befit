@@ -9,6 +9,8 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.befit.R
 import com.example.befit.databinding.FragmentWelcomeBinding
+import com.example.befit.ui.activity.MainActivity
+import kotlinx.android.synthetic.main.activity_main.*
 
 class WelcomeFragment : Fragment() {
 
@@ -21,7 +23,7 @@ class WelcomeFragment : Fragment() {
     ): View {
         _binding = FragmentWelcomeBinding.inflate(inflater, container, false)
         (activity as AppCompatActivity?)!!.supportActionBar!!.hide()
-//        (activity as MainActivity).btm_nav.visibility = View.GONE
+        (activity as MainActivity).btm_nav.visibility = View.GONE
 
         binding.toRegistrationBtn.setOnClickListener {
             findNavController().navigate(R.id.action_welcomeFragment_to_registrationFragment)
