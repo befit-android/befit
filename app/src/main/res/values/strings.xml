@@ -20,6 +20,21 @@
     <string name="havent_account">Нет аккаунта?</string>
     <string name="to_registration">Зарегистрируйтесь</string>
 
+    // diary
+    <string name="eaten">съедено</string>
+    <string name="proteins">белки</string>
+    <string name="fats">жиры</string>
+    <string name="carbohydrates">углеводы</string>
+    <string name="remained">осталось</string>
+    <string name="add_meal">Добавить\nприём пищи</string>
+    <string name="add_dimensions">Добавить\nзамеры</string>
+    <string name="water_balance">Водный баланс</string>
+    <string name="goal">Цель:</string>
+    <string name="morning">Доброе утро, %s!</string>
+    <string name="afternoon">Добрый день, %s!</string>
+    <string name="evening">Доброе вечер, %s!</string>
+    <string name="night">Доброй ночи, %s!</string>
+
     <string-array name="gender">
         <item>Мужской</item>
         <item>Женский</item>

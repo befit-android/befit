@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/diaryLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -9,9 +10,11 @@
         android:id="@+id/greetingTv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="20dp"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginVertical="10dp"
         android:textColor="@color/gray"
         android:textSize="20sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -55,7 +58,7 @@
         android:layout_width="match_parent"
         android:layout_height="0.8dp"
         android:layout_gravity="center"
-        android:layout_marginStart="30dp"
+        android:layout_marginStart="20dp"
         android:background="@color/gray_50"
         app:layout_constraintBottom_toBottomOf="@id/currentDate"
         app:layout_constraintEnd_toEndOf="parent"
@@ -69,7 +72,7 @@
         android:background="@color/white"
         android:orientation="horizontal"
         android:paddingStart="10dp"
-        android:paddingEnd="30dp"
+        android:paddingEnd="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/calendarLayout">
 
@@ -99,6 +102,360 @@
             android:textSize="15sp" />
 
     </LinearLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/caloriesLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:background="@drawable/bg_green_25"
+        android:padding="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/currentDate">
+
+        <TextView
+            android:id="@+id/caloriesEatenTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1200"
+            android:textColor="@color/dark_green"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/eatenTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:text="@string/eaten"
+            android:textColor="@color/light_gray"
+            android:textSize="16sp"
+            app:layout_constraintStart_toEndOf="@+id/caloriesEatenTv"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/proteinsEatenTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="67/128"
+            android:textColor="@color/dark_green"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="@+id/caloriesEatenTv"
+            app:layout_constraintTop_toBottomOf="@+id/caloriesEatenTv" />
+
+        <TextView
+            android:id="@+id/proteinsTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:text="@string/proteins"
+            android:textColor="@color/light_gray"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="@+id/proteinsProgressBar"
+            app:layout_constraintTop_toBottomOf="@+id/caloriesEatenTv" />
+
+        <ProgressBar
+            android:id="@+id/proteinsProgressBar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="0dp"
+            android:layout_height="5dp"
+            android:layout_marginTop="5dp"
+            android:progressDrawable="@drawable/horizontal_progressbar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/caloriesEatenTv"
+            app:layout_constraintTop_toBottomOf="@+id/proteinsEatenTv" />
+
+        <TextView
+            android:id="@+id/fatsEatenTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="300/412"
+            android:textColor="@color/dark_green"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="@+id/caloriesEatenTv"
+            app:layout_constraintTop_toBottomOf="@+id/proteinsEatenTv" />
+
+        <TextView
+            android:id="@+id/fatsTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="@string/fats"
+            android:textColor="@color/light_gray"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="@+id/fatsProgressBar"
+            app:layout_constraintTop_toBottomOf="@+id/proteinsEatenTv" />
+
+        <ProgressBar
+            android:id="@+id/fatsProgressBar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="0dp"
+            android:layout_height="5dp"
+            android:layout_marginTop="5dp"
+            android:progressDrawable="@drawable/horizontal_progressbar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/caloriesEatenTv"
+            app:layout_constraintTop_toBottomOf="@+id/fatsEatenTv" />
+
+        <TextView
+            android:id="@+id/carbohydratesEatenTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="120/162"
+            android:textColor="@color/dark_green"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="@+id/caloriesEatenTv"
+            app:layout_constraintTop_toBottomOf="@+id/fatsEatenTv" />
+
+        <TextView
+            android:id="@+id/carbohydratesTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="@string/carbohydrates"
+            android:textColor="@color/light_gray"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="@+id/carbohydratesProgressBar"
+            app:layout_constraintTop_toBottomOf="@+id/fatsEatenTv" />
+
+        <ProgressBar
+            android:id="@+id/carbohydratesProgressBar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="0dp"
+            android:layout_height="5dp"
+            android:layout_marginTop="5dp"
+            android:progressDrawable="@drawable/horizontal_progressbar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/caloriesEatenTv"
+            app:layout_constraintTop_toBottomOf="@+id/carbohydratesEatenTv" />
+
+        <ProgressBar
+            android:id="@+id/caloriesProgressBar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:progressDrawable="@drawable/circular_progressbar"
+            app:layout_constraintBottom_toBottomOf="@id/carbohydratesProgressBar"
+            app:layout_constraintEnd_toStartOf="@+id/caloriesEatenTv"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/caloriesEatenTv" />
+
+        <LinearLayout
+            android:id="@+id/caloriesProgressLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/caloriesEatenTv"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="451"
+                android:textColor="@color/dark_green"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/remained"
+                android:textColor="@color/light_gray"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+        android:id="@+id/shadow"
+        android:layout_width="match_parent"
+        android:layout_height="15dp"
+        android:layout_marginHorizontal="40dp"
+        android:background="@drawable/bg_light_green_bottom25"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/caloriesLayout" />
+
+    <LinearLayout
+        android:id="@+id/addLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/shadow">
+
+        <LinearLayout
+            android:id="@+id/addMealLayout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_orange_25"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingHorizontal="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:gravity="center"
+                android:text="@string/add_meal"
+                android:textColor="@color/gray"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:layout_width="130dp"
+                android:layout_height="130dp"
+                android:layout_marginBottom="-50dp"
+                android:elevation="2dp"
+                android:rotation="90"
+                android:src="@drawable/diary_add_meal" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/addDimensionsLayout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_green_25"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingHorizontal="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:gravity="center"
+                android:text="@string/add_dimensions"
+                android:textColor="@color/gray"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:layout_width="130dp"
+                android:layout_height="130dp"
+                android:layout_marginBottom="-50dp"
+                android:elevation="2dp"
+                android:src="@drawable/diary_add_dimensions" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/waterBalanceLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:layout_weight="1"
+        android:background="@drawable/bg_light_blue_25"
+        android:orientation="vertical"
+        android:paddingHorizontal="30dp"
+        android:paddingVertical="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/addLayout">
+
+        <TextView
+            android:id="@+id/waterBalanceTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/water_balance"
+            android:textColor="@color/gray"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <TextView
+            android:id="@+id/goalTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:gravity="center"
+            android:text="@string/goal"
+            android:textColor="@color/gray"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/waterBalanceTv"/>
+
+        <TextView
+            android:id="@+id/scopeOfGoalTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:gravity="center"
+            android:text="1.75 л / 2.0 л"
+            android:textColor="@color/gray"
+            android:textSize="14sp"
+            app:layout_constraintStart_toEndOf="@+id/goalTv"
+            app:layout_constraintTop_toBottomOf="@+id/waterBalanceTv"/>
+
+        <LinearLayout
+            android:id="@+id/waterLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/goalTv">
+
+            <ImageView
+                android:id="@+id/water_1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_water_drunk"
+                android:layout_marginEnd="10dp"
+                android:layout_weight="1"/>
+
+            <ImageView
+                android:id="@+id/water_2"
+                android:layout_width="0dp"
+                android:layout_marginEnd="10dp"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_water_drunk"
+                android:layout_weight="1"/>
+
+            <ImageView
+                android:id="@+id/water_3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:src="@drawable/ic_water_drunk"
+                android:layout_weight="1"/>
+
+            <ImageView
+                android:id="@+id/water_4"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_water_not_drunk"
+                android:layout_weight="1"/>
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ImageView
+        android:layout_width="130dp"
+        android:layout_height="130dp"
+        android:src="@drawable/diary_water_balance"
+        android:layout_marginEnd="5dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/addLayout"/>
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/logoutBtn"

@@ -1,6 +1,7 @@
 package com.example.befit.ui.fragments.diary
 
 import android.annotation.SuppressLint
+import android.graphics.Typeface
 import android.os.Bundle
 import android.preference.PreferenceManager
 import android.view.*
@@ -26,6 +27,7 @@ import com.kizitonwose.calendarview.ui.ViewContainer
 import com.kizitonwose.calendarview.utils.yearMonth
 import java.time.DayOfWeek
 import java.time.LocalDate
+import java.time.LocalDateTime
 import java.time.YearMonth
 
 class DiaryFragment : Fragment() {
@@ -55,6 +57,7 @@ class DiaryFragment : Fragment() {
             ViewModelProvider(requireActivity(), viewModelFactory)[AuthViewModel::class.java]
 
         createCalendar()
+        setProgressBar()
 
         binding.logoutBtn.setOnClickListener {
             logout()
@@ -63,15 +66,40 @@ class DiaryFragment : Fragment() {
         return binding.root
     }
 
+    private fun setProgressBar() {
+        binding.caloriesProgressBar.max = 1651
+        binding.caloriesProgressBar.progress = 1200
+
+        binding.proteinsProgressBar.max = 128
+        binding.proteinsProgressBar.progress = 67
+
+        binding.fatsProgressBar.max = 412
+        binding.fatsProgressBar.progress = 300
+
+        binding.carbohydratesProgressBar.max = 162
+        binding.carbohydratesProgressBar.progress = 120
+    }
+
     override fun onResume() {
         super.onResume()
         checkAuthorizationUser()
     }
 
+    private fun setGreeting(name: String) {
+        val greeting =
+            when (LocalDateTime.now().hour) {
+                in 5..12 -> getString(R.string.morning, name)
+                in 13..17 -> getString(R.string.afternoon, name)
+                in 18..22 -> getString(R.string.evening, name)
+                else -> {getString(R.string.night, name)}
+            }
+        binding.greetingTv.text = greeting
+    }
+
     private fun checkAuthorizationUser() {
         viewModel.getUser(requireContext())
         viewModel.getResponseUser().observe(viewLifecycleOwner, Observer { response ->
-            binding.greetingTv.text = response.first_name
+            setGreeting(response.first_name)
         })
         viewModel.getErrorUser().observe(viewLifecycleOwner) {
             if (it != "") {

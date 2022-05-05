@@ -6,6 +6,8 @@ import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.DatePickerDialog
 import android.content.Context
+import android.content.res.ColorStateList
+import android.graphics.Color
 import android.net.ConnectivityManager
 import android.view.Gravity
 import android.view.View
@@ -57,6 +59,7 @@ object Utility {
             val layout =
                 (this as? Activity)?.findViewById<View>(R.id.content)?.rootView as? ViewGroup
             progressBar = ProgressBar(this, null, R.attr.progressBarStyleLarge)
+            progressBar!!.indeterminateTintList = ColorStateList.valueOf(resources.getColor(com.example.befit.R.color.dark_green))
 
             progressBar?.let { it1 ->
                 it1.isIndeterminate = true
@@ -122,9 +125,9 @@ object Utility {
         )
         datePickerDialog.show()
         datePickerDialog.getButton(DatePickerDialog.BUTTON_NEGATIVE)
-            .setTextColor(resources.getColor(com.example.befit.R.color.purple_700))
+            .setTextColor(resources.getColor(com.example.befit.R.color.dark_orange))
         datePickerDialog.getButton(DatePickerDialog.BUTTON_POSITIVE)
-            .setTextColor(resources.getColor(com.example.befit.R.color.teal_700))
+            .setTextColor(resources.getColor(com.example.befit.R.color.dark_green))
     }
 
     // change calendar mode by swipe
