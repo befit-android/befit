@@ -15,6 +15,9 @@
     <color name="green">#EAFAB1</color>
     <color name="light_green">#F7FDDF</color>
     <color name="dark_green">#06493D</color>
+    <color name="medium_green">#61865A</color>
+    <color name="medium_green_50">#8061865A</color>
+
 
     <color name="light_blue">#F0F4F5</color>
 

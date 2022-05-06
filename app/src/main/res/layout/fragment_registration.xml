@@ -2,111 +2,74 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@color/white"
-    android:layout_gravity="center_vertical">
+    android:layout_height="match_parent"
+    android:background="@color/gray_50">
 
-    <EditText
-        android:id="@+id/nameEt"
-        style="@style/EdittextStyle"
-        android:layout_gravity="center"
-        android:hint="@string/name"
-        android:inputType="textCapWords"
+    <TextView
+        android:id="@+id/welcomeTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:gravity="center"
+        android:text="@string/registration_text"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+
     <EditText
         android:id="@+id/emailEt"
         style="@style/EdittextStyle"
-        android:layout_gravity="center"
-        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
         android:hint="@string/email"
         android:inputType="textEmailAddress"
+        app:layout_constraintBottom_toTopOf="@+id/passwordEt"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nameEt" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/passwordEt"
         style="@style/EdittextStyle"
-        android:layout_gravity="center"
-        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
         android:hint="@string/password"
-        android:imeOptions="actionDone"
         android:inputType="textPassword"
+        app:layout_constraintBottom_toTopOf="@+id/confirmEt"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/emailEt" />
+        app:layout_constraintStart_toStartOf="parent" />
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/genderLayout"
-        style="@style/DropdownMenu"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:background="@drawable/bg_white_10"
-        android:textColorHint="@color/black"
-        app:endIconDrawable="@drawable/selector_arrow"
-        app:endIconTint="@color/black"
-        app:hintEnabled="false"
+    <EditText
+        android:id="@+id/confirmEt"
+        style="@style/EdittextStyle"
+        android:layout_marginBottom="20dp"
+        android:hint="@string/confirm_password"
+        android:inputType="textPassword"
+        app:layout_constraintBottom_toTopOf="@+id/nextBtn"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/passwordEt">
-
-        <AutoCompleteTextView
-            android:id="@+id/genderTv"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:hint="@string/gender"
-            android:inputType="none"
-            android:textColor="@color/black"
-            android:textSize="16sp" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/dateOfBirthLayout"
-        style="@style/DropdownMenu"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:background="@drawable/bg_white_10"
-        android:textColorHint="@color/black"
-        app:endIconDrawable="@drawable/ic_arrow"
-        app:endIconTint="@color/black"
-        app:hintEnabled="false"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/genderLayout">
-
-        <AutoCompleteTextView
-            android:id="@+id/dateOfBirthTv"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:hint="@string/dateOfBirth"
-            android:inputType="none"
-            android:textColor="@color/black"
-            android:textSize="16sp" />
-    </com.google.android.material.textfield.TextInputLayout>
+        app:layout_constraintStart_toStartOf="parent" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/registrationBtn"
+        android:id="@+id/nextBtn"
         style="@style/AuthorizationButtonStyle"
-        android:layout_gravity="center"
-        android:layout_marginTop="34dp"
-        android:text="@string/registration"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/bg_green_15"
+        android:text="@string/next"
+        android:textColor="@color/dark_green"
+        app:layout_constraintBottom_toTopOf="@+id/loginLayout"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dateOfBirthLayout" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <LinearLayout
+        android:id="@+id/loginLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="12dp"
+        android:layout_marginBottom="50dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/registrationBtn">
+        app:layout_constraintStart_toStartOf="parent">
 
         <TextView
             android:id="@+id/accountQuestion"
@@ -114,16 +77,17 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="5dp"
             android:text="@string/have_account"
-            android:textColor="@color/black"
-            android:textSize="18sp" />
+            android:textColor="@color/white"
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/toLoginBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/to_login"
-            android:textColor="@color/dark_orange"
-            android:textSize="18sp" />
+            android:textColor="@color/green"
+            android:textSize="16sp"
+            android:textStyle="bold" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

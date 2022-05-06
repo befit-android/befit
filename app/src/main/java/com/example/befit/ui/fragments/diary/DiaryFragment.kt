@@ -19,7 +19,6 @@ import com.example.befit.ui.activity.MainActivity
 import com.example.befit.util.Utility.swipeToWeekMode
 import com.example.befit.viewmodel.auth.AuthViewModel
 import com.example.befit.viewmodel.auth.AuthViewModelFactory
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.kizitonwose.calendarview.model.CalendarDay
 import com.kizitonwose.calendarview.model.DayOwner
 import com.kizitonwose.calendarview.model.InDateStyle
@@ -157,7 +156,7 @@ class DiaryFragment : Fragment() {
                     when (day.date) {
                         selectedDate -> {
                             textView.setTextColor(resources.getColor(R.color.gray))
-                            container.dayLayout.setBackgroundResource(R.drawable.bg_white_10)
+                            container.dayLayout.setBackgroundResource(R.drawable.bg_white_15)
                         }
                         today -> {
                             textView.setTextColor(resources.getColor(R.color.dark_orange))

@@ -9,6 +9,9 @@ data class User(
     val email: String,
     val first_name: String,
     val sex: Char,
-    val date_of_birth: String,
-    val pic: String
+    val birth_date: String,
+    val height: Int,
+    val weight: Int,
+    val goal: Char,
+    val activity: Char
 ): Parcelable

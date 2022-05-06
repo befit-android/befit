@@ -10,19 +10,38 @@
     <string name="logout">Выход</string>
 
     // welcome
-    <string name="registration">Регистрация</string>
-    <string name="login">Вход</string>
+    <string name="registration">Начать</string>
+    <string name="login">Войти</string>
+    <string name="welcome">Начните следить\nза своим питанием\nвместе с <font color='#EAFAB1'>befit</font></string>
 
     // registration
-    <string name="name">Имя</string>
+    <string name="registration_text">В первый раз здесь?\nСоздайте аккаунт!</string>
     <string name="email">Email</string>
     <string name="password">Пароль</string>
-    <string name="gender">Пол</string>
-    <string name="dateOfBirth">Дата рождения</string>
+    <string name="confirm_password">Подтвердите пароль</string>
     <string name="have_account">Уже есть аккаунт?</string>
-    <string name="to_login">Войдите</string>
+    <string name="to_login">Авторизуйтесь</string>
+    <string name="next">Продолжить</string>
+    <string name="what_is_u_name">Как вас зовут?</string>
+    <string name="name">Имя</string>
+    <string name="choose_gender">Выберите пол</string>
+    <string name="when_were_u_born">Когда вы родились?</string>
+    <string name="dateOfBirth">Дата рождения</string>
+    <string name="height_and_weight">Какой у вас рост и вес?</string>
+    <string name="height">Рост (в см)</string>
+    <string name="weight">Вес (в кг)</string>
+    <string name="what_is_u_goal">Какая у вас цель?</string>
+    <string name="lose_weight">Сбросить вес</string>
+    <string name="maintain_weight">Поддерживать вес</string>
+    <string name="gain_weight">Набрать вес</string>
+    <string name="level_of_physical_activity">Какой у вас уровень\nфизической активности?</string>
+    <string name="low">Низкий</string>
+    <string name="moderate">Умеренный</string>
+    <string name="high">Высокий</string>
+    <string name="complete">Завершить</string>
 
     // login
+    <string name="login_text">Рады видеть\nвас снова!</string>
     <string name="havent_account">Нет аккаунта?</string>
     <string name="to_registration">Зарегистрируйтесь</string>
 

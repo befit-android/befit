@@ -107,7 +107,6 @@ object Utility {
         val formatUser: DateTimeFormatter = DateTimeFormatter.ofPattern("dd.MM.yyyy")
         val formatServer: DateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
 
-
         val calendar = Calendar.getInstance()
         val year = calendar.get(Calendar.YEAR)
         val month = calendar.get(Calendar.MONTH)

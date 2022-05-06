@@ -41,7 +41,11 @@ class AuthViewModel(
         email: String,
         first_name: String,
         sex: Char,
-        date_of_birth: String,
+        birth_date: String,
+        height: Int,
+        weight: Int,
+        goal: Char,
+        activity: Char,
         password: String
     ) {
         errorUserInfo.value = ""
@@ -49,7 +53,17 @@ class AuthViewModel(
         if (context.isInternetAvailable()) {
             viewModelScope.launch {
                 val response =
-                    apiRepository.register(email, first_name, sex, date_of_birth, password)
+                    apiRepository.register(
+                        email,
+                        first_name,
+                        sex,
+                        birth_date,
+                        height,
+                        weight,
+                        goal,
+                        activity,
+                        password
+                    )
                 if (response.isSuccessful) {
                     sharedPreferences.edit().putString("token", response.body()?.token).apply()
                     responseUserInfo.value = response.message()

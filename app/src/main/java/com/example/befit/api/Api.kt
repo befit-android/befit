@@ -18,7 +18,11 @@ interface Api {
         @Field("email") email: String,
         @Field("first_name") first_name: String,
         @Field("sex") sex: Char,
-        @Field("date_of_birth") date_of_birth: String,
+        @Field("birth_date") birth_date: String,
+        @Field("height") height: Int,
+        @Field("weight") weight: Int,
+        @Field("goal") goal: Char,
+        @Field("activity") activity: Char,
         @Field("password") password: String
     ): Response<UserInfo>
 
