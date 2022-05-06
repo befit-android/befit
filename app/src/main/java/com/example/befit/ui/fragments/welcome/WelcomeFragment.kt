@@ -1,5 +1,7 @@
 package com.example.befit.ui.fragments.welcome
 
+import android.media.MediaPlayer.OnPreparedListener
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,6 +13,7 @@ import com.example.befit.R
 import com.example.befit.databinding.FragmentWelcomeBinding
 import com.example.befit.ui.activity.MainActivity
 import kotlinx.android.synthetic.main.activity_main.*
+
 
 class WelcomeFragment : Fragment() {
 
@@ -24,6 +27,9 @@ class WelcomeFragment : Fragment() {
         _binding = FragmentWelcomeBinding.inflate(inflater, container, false)
         (activity as AppCompatActivity?)!!.supportActionBar!!.hide()
         (activity as MainActivity).btm_nav.visibility = View.GONE
+
+        (activity as MainActivity).welcomeVideo.start()
+        (activity as MainActivity).welcomeVideo.visibility = View.VISIBLE
 
         binding.toRegistrationBtn.setOnClickListener {
             findNavController().navigate(R.id.action_welcomeFragment_to_registrationFragment)

@@ -1,5 +1,6 @@
 package com.example.befit.ui.fragments.login
 
+import android.net.Uri
 import android.os.Bundle
 import android.preference.PreferenceManager
 import android.text.TextUtils
@@ -14,8 +15,11 @@ import androidx.navigation.fragment.findNavController
 import com.example.befit.R
 import com.example.befit.databinding.FragmentLoginBinding
 import com.example.befit.repository.ApiRepository
+import com.example.befit.ui.activity.MainActivity
 import com.example.befit.viewmodel.auth.AuthViewModel
 import com.example.befit.viewmodel.auth.AuthViewModelFactory
+import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.fragment_welcome.*
 import kotlinx.coroutines.delay
 
 class LoginFragment : Fragment() {
@@ -61,6 +65,8 @@ class LoginFragment : Fragment() {
                     if (it == "OK") {
                         delay(100)
                         findNavController().navigate(R.id.action_loginFragment_to_diaryFragment)
+                        (activity as MainActivity).welcomeVideo.stopPlayback()
+                        (activity as MainActivity).welcomeVideo.visibility = View.GONE
                     }
                 }
             })

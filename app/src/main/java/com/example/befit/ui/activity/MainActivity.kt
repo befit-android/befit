@@ -1,7 +1,9 @@
 package com.example.befit.ui.activity
 
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
@@ -30,6 +32,10 @@ class MainActivity : AppCompatActivity() {
         binding.chatBtn.setOnClickListener {
             binding.btmNav.selectedItemId = R.id.chatFragment
         }
+
+        val uri = Uri.parse("android.resource://" + packageName + "/" + R.raw.welcome_video)
+        binding.welcomeVideo.setOnPreparedListener { mp -> mp.isLooping = true }
+        binding.welcomeVideo.setVideoURI(uri)
     }
 
     override fun onDestroy() {
